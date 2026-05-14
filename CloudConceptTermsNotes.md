@@ -1,5 +1,19 @@
 # Cloud concept terms
 
+## Cloud Concepts
+
+- Cloud computing = Delivery model for services like, storage, compute power, networking, analytics and more over the internet.
+- Scalability = process of adding or removing virtual resources either manually or automatically.
+- Elasticity = Automatically scaling your resources to meet changing demands of resources during a period of time. Scale dynamically.
+- Agility = Resources on the cloud are ready to use within minutes or seconds. The ability to react quickly.
+- Fault tolerance = Data is stored on multiple discs in case one disc breaks. System remains up and running in case of compotent and service failures.
+- Disaster recovery = Ability to recover from an event that has taken down an entire region or availability zone.
+- High availability = Ability to keep systems running for extended periods of time with little downtime or none at all.
+
+## Consumption based model
+
+- 
+
 ## Cloud global infrastructure
 
 - Region = interconnected data center clusters usually in one county. (3 or so data centers in one cluster)
