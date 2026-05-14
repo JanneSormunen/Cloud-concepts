@@ -89,7 +89,7 @@
 
 - Application LB = balances HTTP, routes traffic, application layer (L7)
 
-- Network LB = balances TCP, UDP, TLS, routes traffic based on IP data, transport layer (L3)
+- Network LB = balances TCP, UDP, TLS, routes traffic based on IP data, transport layer (L4)
 
 - Classic LB = Does a bit of both
 
@@ -116,7 +116,9 @@
 
 - Zero trust = assume nobody can be trusted (least permissions)
 
-- 
+- Shared responsibility
+- Customer responsibility = OS, apps, security group, firewalls network and account management
+- CSP = Physical security of data centers, hardware and software infra, network infra, virtualization infra.
 
 ## Resources and resource groups
 
@@ -135,4 +137,92 @@
 
 ## Compute services
 
-- 
+- Docker = Able to create virtualized OS, repeatable, self contained, software runs in different environments
+- Kubernetes (container orchestration)
+- Virtual machine
+- Lambda/Serverless code = code only runs when triggered, pay only when triggered, timeout in 15 minutes.
+- Virtual machine scale set = simplifies creating and managing a group of load balanced VMs
+
+## Intermediate cloud concepts
+
+- Autoscaling = Adding or removing virtual resources either manually or automatically.
+- Elastic load balancing = distributes incoming apps or net traffic to multiple AZ:s or a single AZ
+
+## Storage
+
+- Each VM has detachable and swappable storage discs.
+- Can attach new discs.
+- Snapshots (backup)
+- Block and object storage
+- Block storage = change one block (piece of file) that contains the character that is being changed (partial updates)
+- Object storage = entire file must be updated.
+
+## Networking
+
+- IPv4 = 32 bit address (192.0.2.0)
+- IPv6 = 128 bit address
+- Subnets are discrete sections used for effective address allocation and network filtering.
+- CIDR block (Classless inner domain routing) = Way to define a range of IP addresses using a compact notation.
+- 5 out of 256 addresses get reserved in a virtual network (10.0.0.0 network address - 10.0.0.1 internal communication - 10.0.0.2 DNS resolution - 10.0.0.3 future use - 10.0.0.255 network broadcast address)
+- First feasible size on cloud is /29 or /28
+- Largst size is /16 (IPv6 also supported)
+- Public network = internet, public IPv4
+- LAN = private IPv4, AWS VPC, Azure VNet
+
+- VPC = Virtual private cloud (private isolated network inside a public cloud) only you control access
+- Belongs to only one region and multiple AZs
+- Subnets = range of IP addresses that divide a VPC, belongs to one AZ, classified public or private.
+
+- Internet gateway = accessible from the internet as long as your NIC is associated with a public IPv4
+- NIC = Network interface card
+- Elastic network interface (VNIC)
+- Detach and attach to another instance to redirect network traffic (attributes follow)
+
+- Public = Internet gateway, local
+- Private NAT gateway, local
+- Route table = set of rules to configure to direct network traffic to subnet
+
+- VPC peering = allows two VPCs to communicate with eachother as if they were the same network
+- Can only have one peering resource between the same two VPCs
+- Can connect VPCs in your own account between other accounts or regions
+- Open internet (cheapest, simple, HTTP, Firewall, site to VPN (more encryption), direct from OnPrem to cloud outside internet (fastest, most secure and most expensive)
+
+- VPC security = TLS, Network segmentation, L4 Firewall, NAT Gateway
+- Network segmentation = Split network into multiple smaller segments to improve security, performance and management
+
+- L4 Firewall, works through firewall rules - packet filtering
+- Action: allow/deny packets to pass
+- Protocol: TCP, UDP, ICMP
+- Source: IP address range, TCP ports
+- Destination: IP address range, TCP ports
+
+- CDN = Global content delivery
+- NSG = Security rules
+- DNS = Domain name service
+
+## Databases
+
+- Structured data - table like (excel)
+- Semi-structured data - data with slightly differing properties (json file)
+- SQL = Relational database (has structured data)
+- No-SQL = Non-relational database (has semi-structured data)
+- SQL queries - tables, columns rows, records
+- NoSQL - tables, .json objects
+- NoSQL is easily compatible with HTTP
+- ACID principle (Atomicity = A transaction happens fully or it doesn't. Consistency = data must follow rules/constraints before and after a transaction. Isolation = concurrent transactions do not interfere with eachother. Durability = Once committed, data survives crashes or power loss)
+- Fast when DB is fully loaded with RAM
+- Why DBs are so resource consuming
+- Dependent on transaction log
+- DB file discs need to be fast and never run out of space
+
+- DBs are single node systems, only way to boost performance is cache, optimization, replicas
+- redundancy features are often causing extra license costs
+- High availability with multt-AZ deployment
+- Can synchronize DB content to another DB
+- Semi-passive
+
+- Read replica, asynchronous replication, can be promoted to primary if needed, use for read heavy database workloads
+- Split the load of the single node system by reading from the replica and write from the original
+
+- DB characteristics = Engine, Size, Memory class
+- Pay for storage and backups and transfers of data
